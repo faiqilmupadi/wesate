@@ -17,6 +17,10 @@ use App\Http\Controllers\SateController;
 //     return view('welcome');
 // });
 
+Route::get('/', function () {
+    return view('user.login', ['title' => 'Login']);
+})->name('login');
+
 Route::get('home', function () {
     return view('frontend.home', ['title' => 'Home']);
 })->name('home');
