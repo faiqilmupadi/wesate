@@ -18,19 +18,19 @@ class UserController extends Controller
     public function register_action(Request $request)
     {
         $request->validate([
+            'email' => 'required|email|unique:tb_user',
             'name' => 'required',
-            'username' => 'required|unique:tb_user',
             'password' => 'required',
             'password_confirm' => 'required|same:password',
         ]);
-
+    
         $user = new User([
             'name' => $request->name,
-            'username' => $request->username,
+            'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
         $user->save();
-
+    
         return redirect()->route('login')->with('success', 'Registration success. Please login!');
     }
 
@@ -44,16 +44,17 @@ class UserController extends Controller
     public function login_action(Request $request)
     {
         $request->validate([
-            'username' => 'required',
+            'email' => 'required|email',
             'password' => 'required',
         ]);
-        if (Auth::attempt(['username' => $request->username, 'password' => $request->password])) {
+    
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
             return redirect()->intended('home');
         }
-
+    
         return back()->withErrors([
-            'password' => 'Wrong username or password',
+            'password' => 'Wrong email or password',
         ]);
     }
 

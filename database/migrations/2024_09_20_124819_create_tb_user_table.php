@@ -12,9 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('tb_user', function (Blueprint $table) {
-            $table->id('user_id');
+            $table->string('email')->primary();
             $table->string('name');
-            $table->string('username')->unique();
             $table->string('password');
             $table->timestamps();
         });

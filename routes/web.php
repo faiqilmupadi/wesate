@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\SateController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -30,10 +30,10 @@ Route::get('monitoring', function () {
 })->name('monitoring');
 
 
-Route::get('register', [SateController::class, 'register'])->name('register');
-Route::post('register', [SateController::class, 'register_action'])->name('register.action');
-Route::get('login', [SateController::class, 'login'])->name('login');
-Route::post('login', [SateController::class, 'login_action'])->name('login.action');
-Route::get('password', [SateController::class, 'password'])->name('password');
-Route::post('password', [SateController::class, 'password_action'])->name('password.action');
-Route::get('logout', [SateController::class, 'logout'])->name('logout');
+Route::get('register', [UserController::class, 'register'])->name('register');
+Route::post('register', [UserController::class, 'register_action'])->name('register.action');
+Route::get('login', [UserController::class, 'login'])->name('login');
+Route::post('login', [UserController::class, 'login_action'])->name('login.action');
+Route::get('password', [UserController::class, 'password'])->name('password');
+Route::post('password', [UserController::class, 'password_action'])->name('password.action');
+Route::get('logout', [UserController::class, 'logout'])->name('logout');
