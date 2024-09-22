@@ -21,13 +21,22 @@ Route::get('/', function () {
     return view('user.login', ['title' => 'Login']);
 })->name('login');
 
-Route::get('home', function () {
-    return view('frontend.home', ['title' => 'Home']);
-})->name('home');
 
 Route::get('monitoring', function () {
-    return view('frontend.monitoring', ['title' => 'Monitoring']);
+    return view('menu.monitoring', ['title' => 'Monitoring']);
 })->name('monitoring');
+
+Route::get('mahasiswa', function () {
+    return view('dashboard.mahasiswa', ['title' => 'Mahasiswa']);
+})->name('mahasiswa');
+
+Route::get('kaprodi', function () {
+    return view('dashboard.kaprodi', ['title' => 'Kaprodi']);
+})->name('kaprodi');
+
+
+// Route::get('/dashboard/mahasiswa', [UserController::class, 'mahasiswa'])->name('mahasiswa');
+// Route::get('/dashboard/kaprodi', [UserController::class, 'kaprodi'])->name('kaprodi');
 
 
 Route::get('register', [UserController::class, 'register'])->name('register');

@@ -18,7 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $table = 'tb_user';
-    protected $primaryKey = 'email';
+    // protected $primaryKey = 'email';
+    // // Non-incrementing karena email adalah string
+    // public $incrementing = false;
+
+    // // Tipe primary key adalah string
+    // protected $keyType = 'string';
 
     protected $fillable = [
         'name',
@@ -45,4 +50,14 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
         'password' => 'hashed',
     ];
+
+    public function mahasiswa()
+    {
+        return $this->hasOne(Mahasiswa::class, 'email', 'email');
+    }
+
+    public function kaprodi()
+    {
+        return $this->hasOne(Kaprodi::class, 'email', 'email');
+    }
 }

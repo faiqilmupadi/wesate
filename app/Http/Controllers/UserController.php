@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Mahasiswa;
+use App\Models\Kaprodi;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -23,14 +25,14 @@ class UserController extends Controller
             'password' => 'required',
             'password_confirm' => 'required|same:password',
         ]);
-    
+
         $user = new User([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
         ]);
         $user->save();
-    
+
         return redirect()->route('login')->with('success', 'Registration success. Please login!');
     }
 
@@ -47,12 +49,21 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-    
+
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('home');
+
+            // Pengecekan role berdasarkan email
+            $user = Auth::user();
+            if ($user->mahasiswa) {
+                return redirect()->route('mahasiswa');
+            } elseif ($user->kaprodi) {
+                return redirect()->route('kaprodi');
+            }
+            return redirect('home');
+            // return redirect()->intended('home');
         }
-    
+
         return back()->withErrors([
             'password' => 'Wrong email or password',
         ]);
@@ -84,4 +95,14 @@ class UserController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
+    // public function mahasiswa()
+    // {
+    //     return view('dashboard.mahasiswa'); // Mengarah ke resources/views/dashboard/mahasiswa.blade.php
+    // }
+
+    // public function kaprodi()
+    // {
+    //     return view('dashboard.kaprodi'); // Mengarah ke resources/views/dashboard/kaprodi.blade.php
+    // }
 }

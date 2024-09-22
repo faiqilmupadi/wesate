@@ -129,7 +129,7 @@
             <div class="profile">
                 <img src="https://via.placeholder.com/60" alt="Profile Image">
                 <div>
-                    <p>Nama</p>
+                    <p>Nama Kaprodi</p>
                     <p>NIP 66666666</p>
                     <p>Informatika</p>
                 </div>
