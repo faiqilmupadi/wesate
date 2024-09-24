@@ -5,21 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PembimbingAkademik extends Model
+class BagianAkademik extends Model
 {
-    protected $table = 'pembimbingakademik';
+    use HasFactory;
 
-    protected $primaryKey = 'nidn_pembimbingakademik'; // Primary key adalah NIDN Pembimbing Akademik
+    protected $table = 'bagianakademik';
+
+    protected $primaryKey = 'nidn_bagianakademik'; // Primary key adalah NIDN Bagian Akademik
 
     public $incrementing = false;
 
     protected $keyType = 'string'; // Tipe primary key adalah string
 
     protected $fillable = [
-        'nidn_pembimbingakademik', 
-        'nama_pembimbingakademik', 
+        'nidn_bagianakademik', 
+        'nama_bagianakademik', 
         'email', 
-        'id_programstudi', 
         'id_fakultas'
     ];
 
@@ -38,18 +39,4 @@ class PembimbingAkademik extends Model
     {
         return $this->belongsTo(Fakultas::class, 'id_fakultas', 'id_fakultas');
     }
-
-    /**
-     * Relasi belongs-to dengan ProgramStudi.
-     */
-    public function programStudi()
-    {
-        return $this->belongsTo(ProgramStudi::class, 'id_programstudi', 'id_programstudi');
-    }
-
-    public function mahasiswa()
-    {
-        return $this->hasMany(Mahasiswa::class, 'nidn_pembimbingakademik', 'nidn_pembimbingakademik');
-    }
-
 }

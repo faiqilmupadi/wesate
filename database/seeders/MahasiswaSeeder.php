@@ -12,11 +12,12 @@ class MahasiswaSeeder extends Seeder
      */
     public function run(): void
     {
-        $mahasiswa = new Mahasiswa;
-        $mahasiswa -> nim = '24060122130076';
-        $mahasiswa -> nama = 'Azzam Saefudin Rosyidi';
-        $mahasiswa -> email = 'azzamsaefudinrosyidi@students.undip.ac.id';
-        $mahasiswa -> semester = 7;
-        $mahasiswa -> save();
+        // $mahasiswa = new Mahasiswa;
+        // $mahasiswa -> nim = '24060122130076';
+        // $mahasiswa -> nama = 'Azzam Saefudin Rosyidi';
+        // $mahasiswa -> email = 'azzamsaefudinrosyidi@students.undip.ac.id';
+        // $mahasiswa -> semester = 7;
+        // $mahasiswa -> save();
+        Mahasiswa::factory()->count(50)->create();
     }
 }

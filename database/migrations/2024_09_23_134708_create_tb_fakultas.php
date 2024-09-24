@@ -11,12 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('kaprodi', function (Blueprint $table) {
-            $table->char('nidn', 18) -> primary();
-            $table->string('nama');
-            $table->string('email');
-            $table->foreign('email')->references('email')->on('tb_user')->onDelete('cascade');
-            $table->timestamps(); 
+        Schema::create('fakultas', function (Blueprint $table) {
+            // id_fakultas sebagai primary key
+            $table->id('id_fakultas'); // Menggunakan big integer auto increment sebagai primary key
+            $table->string('nama_fakultas', 100);
+            $table->timestamps();
         });
     }
 
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('kaprodi');
+        Schema::dropIfExists('fakultas');
     }
 };

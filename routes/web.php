@@ -30,9 +30,9 @@ Route::get('mahasiswa', function () {
     return view('dashboard.mahasiswa', ['title' => 'Mahasiswa']);
 })->name('mahasiswa');
 
-Route::get('kaprodi', function () {
-    return view('dashboard.kaprodi', ['title' => 'Kaprodi']);
-})->name('kaprodi');
+Route::get('ketuaprogramstudi', function () {
+    return view('dashboard.ketuaprogramstudi', ['title' => 'ketuaprogramstudi']);
+})->name('ketuaprogramstudi');
 
 
 // Route::get('/dashboard/mahasiswa', [UserController::class, 'mahasiswa'])->name('mahasiswa');

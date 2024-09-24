@@ -58,7 +58,7 @@ class UserController extends Controller
             if ($user->mahasiswa) {
                 return redirect()->route('mahasiswa');
             } elseif ($user->kaprodi) {
-                return redirect()->route('kaprodi');
+                return redirect()->route('ketuaprogramstudi');
             }
             return redirect('home');
             // return redirect()->intended('home');

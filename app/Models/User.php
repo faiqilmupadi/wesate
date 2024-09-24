@@ -18,12 +18,12 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $table = 'tb_user';
-    // protected $primaryKey = 'email';
+    protected $primaryKey = 'email';
     // // Non-incrementing karena email adalah string
-    // public $incrementing = false;
+    public $incrementing = false;
 
     // // Tipe primary key adalah string
-    // protected $keyType = 'string';
+    protected $keyType = 'string';
 
     protected $fillable = [
         'name',
@@ -36,10 +36,10 @@ class User extends Authenticatable
      *
      * @var array<int, string>
      */
-    protected $hidden = [
-        'password',
-        'remember_token',
-    ];
+    // protected $hidden = [
+    //     'password',
+    //     'remember_token',
+    // ];
 
     /**
      * The attributes that should be cast.
@@ -48,16 +48,52 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
-        'password' => 'hashed',
+        // 'password' => 'hashed',
     ];
 
+ /**
+     * Relasi dengan mahasiswa.
+     * Satu user bisa menjadi satu mahasiswa.
+     */
     public function mahasiswa()
     {
         return $this->hasOne(Mahasiswa::class, 'email', 'email');
     }
 
-    public function kaprodi()
+    /**
+     * Relasi dengan dekan.
+     * Satu user bisa menjadi satu dekan.
+     */
+    public function dekan()
     {
-        return $this->hasOne(Kaprodi::class, 'email', 'email');
+        return $this->hasOne(Dekan::class, 'email', 'email');
     }
+
+    /**
+     * Relasi dengan ketua program studi.
+     * Satu user bisa menjadi satu ketua program studi.
+     */
+    public function ketuaProgramStudi()
+    {
+        return $this->hasOne(KetuaProgramStudi::class, 'email', 'email');
+    }
+
+    /**
+     * Relasi dengan pembimbing akademik.
+     * Satu user bisa menjadi satu pembimbing akademik.
+     */
+    public function pembimbingAkademik()
+    {
+        return $this->hasOne(PembimbingAkademik::class, 'email', 'email');
+    }
+
+    /**
+     * Relasi dengan bagian akademik.
+     * Satu user bisa menjadi satu bagian akademik.
+     */
+    public function bagianAkademik()
+    {
+        return $this->hasOne(BagianAkademik::class, 'email', 'email');
+    }
+
 }
