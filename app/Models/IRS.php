@@ -10,6 +10,8 @@ class IRS extends Model
     use HasFactory;
 
     protected $table = 'irs';
+    
+    public $incrementing = false;
 
     protected $fillable = ['nim','kode_ruang', 'kode_mk', 'nama_kelas'];
 

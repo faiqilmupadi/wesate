@@ -10,12 +10,16 @@ class JadwalKuliah extends Model
     use HasFactory;
 
     protected $table = 'jadwalkuliah';
+
+    
+    public $incrementing = false;
+
     protected $fillable = [
-        'nama_kelas',
         'kode_mk',
         'kode_ruang',
         'hari',
         'jam',
+        'nama_kelas',
     ];
 
     // Relasi dengan Kelas

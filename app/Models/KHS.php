@@ -11,6 +11,11 @@ class KHS extends Model
 
     protected $table = 'khs';
 
+    
+    public $incrementing = false;
+
+    protected $keyType = 'string'; // Tipe primary key adalah string
+
     protected $fillable = ['nim' , 'nilai', 'kode_mk'];
 
     public function mahasiswa(){

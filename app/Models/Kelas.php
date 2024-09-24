@@ -10,10 +10,16 @@ class Kelas extends Model
     use HasFactory;
 
     protected $table = 'kelas';
+    
     protected $primaryKey = 'nama_kelas';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string'; // Tipe primary key adalah string
+
     protected $fillable = [
         'nama_kelas',
-        'kapasitas',
+        'kode_mk',
     ];
 
     // Relasi dengan IRS

@@ -21,7 +21,8 @@ class Mahasiswa extends Model
         'nim', 
         'nama_mahasiswa', 
         'semester', 
-        'email', 
+        'email',
+        'nidn_pembimbingakademik', 
         'id_programstudi', 
         'id_fakultas'
     ];
