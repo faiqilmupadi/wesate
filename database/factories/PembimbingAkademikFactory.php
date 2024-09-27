@@ -15,10 +15,10 @@ class PembimbingAkademikFactory extends Factory
     
     public function definition(): array
     {
-        $user = User::inRandomOrder()->first();
+        $user = User::where('email', 'like', '%@lecturer.undip.ac.id')->inRandomOrder()->first();
 
         return [
-            'nidn_pembimbingakademik' => $this->faker->unique()->numerify('1981010200000000##'), 
+            'nidn_pembimbingakademik' => $this->faker->unique()->numerify('198101020000000###'), 
             'nama_pembimbingakademik' => $user->name, 
             'id_programstudi' => 1, 
             'email' => $user->email, 

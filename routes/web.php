@@ -21,11 +21,6 @@ Route::get('/', function () {
     return view('user.login', ['title' => 'Login']);
 })->name('login');
 
-
-Route::get('monitoring', function () {
-    return view('menu.monitoring', ['title' => 'Monitoring']);
-})->name('monitoring');
-
 Route::get('mahasiswa', function () {
     return view('mahasiswa.dashboard', ['title' => 'Mahasiswa']);
 })->name('mahasiswa');

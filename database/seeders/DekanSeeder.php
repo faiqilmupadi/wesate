@@ -16,9 +16,9 @@ class DekanSeeder extends Seeder
     {
         // Dekan::factory()->count(2)->create();
         DB::table('dekan')->insert([
-            'nidn_dekan' => '198101020000000055',
-            'nama_dekan' => 'Sandy Kurniawan, S.Kom., M.kom', // Nama dekan mengikuti nama di user
-            'email' => 'sandy.kurniawan@live.undip.ac.id', // Email mengikuti email di user
+            'nidn_dekan' => '198101020000000001',
+            'nama_dekan' => 'Dr. Aris Puji Widodo, S.Si, M.T', // Nama dekan mengikuti nama di user
+            'email' => 'aris.widodo@lecturer.undip.ac.id', // Email mengikuti email di user
             'id_fakultas' => 1,
         ]);
     }
