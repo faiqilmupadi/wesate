@@ -10,7 +10,13 @@ class RuangPerkuliahan extends Model
     use HasFactory;
 
     protected $table = 'ruangperkuliahan';
+
     protected $primaryKey = 'kode_ruang';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'kode_ruang',
         'gedung',

@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\Mahasiswa;
+use App\Models\PembimbingAkademik;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -12,15 +13,17 @@ class MahasiswaFactory extends Factory
 
     public function definition()
     {
-        // Buat user baru
-        $user = User::factory()->create();
+        $user = User::where('email', 'like', '%@students.undip.ac.id')->inRandomOrder()->first();
+        $pembimbingakademik = PembimbingAkademik::inRandomOrder()->first();
 
         return [
             'nim' => $this->faker->unique()->numerify('24060122######'), // 14 karakter
-            'nama' => substr($user->name, 0, 10),
-            'email' => $user-> email, // Menggunakan email dari user yang baru dibuat
-            'semester' => $this->faker->numberBetween(1, 8),
+            'nama_mahasiswa' => $user->name,
+            'semester' => $this->faker->numberBetween(4, 6),
+            'email' => $user ? $user->email : null, // Menggunakan email dari user yang baru dibuat
+            'nidn_pembimbingakademik' => $pembimbingakademik->nidn_pembimbingakademik,
+            'id_programstudi' => 1,
+            'id_fakultas' => 1,
         ];
     }
 }
-

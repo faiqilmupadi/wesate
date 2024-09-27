@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class PembimbingAkademik extends Model
 {
+    use HasFactory;
+    
     protected $table = 'pembimbingakademik';
 
     protected $primaryKey = 'nidn_pembimbingakademik'; // Primary key adalah NIDN Pembimbing Akademik

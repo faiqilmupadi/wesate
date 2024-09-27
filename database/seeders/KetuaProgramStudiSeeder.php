@@ -4,6 +4,7 @@ namespace Database\Seeders;
 use App\Models\Ketuaprogramstudi;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class KetuaProgramStudiSeeder extends Seeder
 {
@@ -12,10 +13,13 @@ class KetuaProgramStudiSeeder extends Seeder
      */
     public function run(): void
     {
-        $kaprodi = new Ketuaprogramstudi;
-        $kaprodi -> nidn = '123456789123456789';
-        $kaprodi -> nama = 'Budi';
-        $kaprodi -> email = 'budi@live.undip.ac.id';
-        $kaprodi -> save();
+        // Ketuaprogramstudi::factory()->count(2)->create();
+        DB::table('ketuaprogramstudi')->insert([
+            'nidn_ketuaprogramstudi' => '198101020000000002', 
+            'nama_ketuaprogramstudi' => 'Dr. Aris Sugiharto, S.Si., M.Kom.', 
+            'id_programstudi' => 1, 
+            'email' => 'aris.sugiharto@live.undip.ac.id', 
+            'id_fakultas' => 1, 
+        ]);
     }
 }

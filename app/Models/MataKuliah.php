@@ -15,6 +15,9 @@ class MataKuliah extends Model
     // Primary key untuk tabel matakuliah
     protected $primaryKey = 'kode_mk';
 
+    public $incrementing = false;
+
+    protected $keyType = 'string';
     // Atribut yang bisa diisi (fillable)
     protected $fillable = [
         'kode_mk',

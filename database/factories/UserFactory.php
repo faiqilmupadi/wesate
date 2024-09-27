@@ -19,9 +19,10 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => substr($this->faker->name, 0, 10),
-            'email' => $this->faker->unique()->safeEmail, // Email sebagai primary key
-            'password' => 'password', // Tidak di-hash
+            // 'name' => substr($this->faker->name, 0, 10),
+            'name' => $this->faker->name,
+            'email' => $this->faker->unique()->userName . '@students.undip.ac.id',
+            'password' => Hash::make('root'), // Tidak di-hash
         ];
     }
 

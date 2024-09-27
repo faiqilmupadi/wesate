@@ -27,14 +27,30 @@ Route::get('monitoring', function () {
 })->name('monitoring');
 
 Route::get('mahasiswa', function () {
-    return view('dashboard.mahasiswa', ['title' => 'Mahasiswa']);
+    return view('mahasiswa.dashboard', ['title' => 'Mahasiswa']);
 })->name('mahasiswa');
 
 Route::get('ketuaprogramstudi', function () {
-    return view('dashboard.ketuaprogramstudi', ['title' => 'ketuaprogramstudi']);
+    return view('ketuaprogramstudi.dashboard', ['title' => 'ketuaprogramstudi']);
 })->name('ketuaprogramstudi');
 
+Route::get('dekan', function () {
+    return view('dekan.dashboard', ['title' => 'dekan']);
+})->name('dekan');
 
+Route::get('bagianakademik', function () {
+    return view('bagianakademik.dashboard', ['title' => 'bagianakademik']);
+})->name('bagianakademik');
+
+Route::get('pembimbingakademik', function () {
+    return view('pembimbingakademik.dashboard', ['title' => 'pembimbingakademik']);
+})->name('pembimbingakademik');
+Route::get('pemilihanrole', function () {
+    return view('user.pemilihanrole', ['title' => 'pemilihanrole']);
+})->name('pemilihanrole');
+
+
+Route::post('pemilihanrole', [UserController::class, 'handleRoleSelection'])->name('handleRoleSelection');
 // Route::get('/dashboard/mahasiswa', [UserController::class, 'mahasiswa'])->name('mahasiswa');
 // Route::get('/dashboard/kaprodi', [UserController::class, 'kaprodi'])->name('kaprodi');
 
