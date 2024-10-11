@@ -11,9 +11,10 @@ return new class extends Migration
         Schema::create('matakuliah', function (Blueprint $table) {
             $table->string('kode_mk', 8)->primary(); // Primary key untuk kode mata kuliah
             $table->string('nama_mk', 50); // Nama mata kuliah
+            $table->integer('semester'); // Jumlah SKS mata kuliah
             $table->integer('sks'); // Jumlah SKS mata kuliah
-            $table->string('nidn_dosenpengampu', 18); // Foreign key untuk NIDN dosen
-            $table->foreign('nidn_dosenpengampu')->references('nidn_dosenpengampu')->on('dosenpengampu')->onDelete('cascade'); // Menambahkan foreign key ke tabel dosen
+            $table->string('jenis', 10);
+            $table->string('nama_dosenpengampu', 50);
             $table->timestamps(); // Untuk mencatat waktu pembuatan dan update
         });
     }

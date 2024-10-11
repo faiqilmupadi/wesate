@@ -17,7 +17,7 @@ class MahasiswaFactory extends Factory
         $pembimbingakademik = PembimbingAkademik::inRandomOrder()->first();
 
         return [
-            'nim' => $this->faker->unique()->numerify('24060122######'), // 14 karakter
+            'nim' => $this->faker->unique()->numerify('24060122#####'), // 14 karakter
             'nama_mahasiswa' => $user->name,
             'semester' => $this->faker->numberBetween(4, 6),
             'email' => $user ? $user->email : null, // Menggunakan email dari user yang baru dibuat

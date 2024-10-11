@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\KetuaProgramStudiController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,9 +41,14 @@ Route::get('bagianakademik', function () {
 Route::get('pembimbingakademik', function () {
     return view('pembimbingakademik.dashboard', ['title' => 'pembimbingakademik']);
 })->name('pembimbingakademik');
+
 Route::get('pemilihanrole', function () {
     return view('user.pemilihanrole', ['title' => 'pemilihanrole']);
 })->name('pemilihanrole');
+
+Route::get('memilihmatakuliah', function () {
+    return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
+})->name('memilihmatakuliah');
 
 
 Route::post('pemilihanrole', [UserController::class, 'handleRoleSelection'])->name('handleRoleSelection');
@@ -57,3 +63,10 @@ Route::post('login', [UserController::class, 'login_action'])->name('login.actio
 Route::get('password', [UserController::class, 'password'])->name('password');
 Route::post('password', [UserController::class, 'password_action'])->name('password.action');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
+
+Route::get('memilihmatakuliah', [KetuaProgramStudiController::class, 'create'])->name('memilihmatakuliah.create');
+Route::post('memilihmatakuliah', [KetuaProgramStudiController::class, 'store'])->name('memilihmatakuliah.store');
+Route::get('memilihmatakuliah/{kode_mk}', [KetuaProgramStudiController::class, 'show'])->name('memilihmatakuliah.show');
+Route::get('memilihmatakuliah/{id}/edit', [KetuaProgramStudiController::class, 'edit'])->name('memilihmatakuliah.edit');
+Route::put('memilihmatakuliah/{id}', [KetuaProgramStudiController::class, 'update'])->name('memilihmatakuliah.update');
+Route::delete('memilihmatakuliah/{id}', [KetuaProgramStudiController::class, 'destroy'])->name('memilihmatakuliah.destroy');
