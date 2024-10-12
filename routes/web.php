@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KetuaProgramStudiController;
+use App\Http\Controllers\BagianAkademikController;
+use App\Models\BagianAkademik;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +53,8 @@ Route::get('memilihmatakuliah', function () {
     return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
 })->name('memilihmatakuliah');
 
+Route::get('penyusunanruang', [BagianAkademik::class, 'create'])->name('penyusunanruang.create');
+Route::post('penyusunanruang', [BagianAkademik::class, 'store'])->name('penyusunanruang.store');
 
 Route::post('pemilihanrole', [UserController::class, 'handleRoleSelection'])->name('handleRoleSelection');
 // Route::get('/dashboard/mahasiswa', [UserController::class, 'mahasiswa'])->name('mahasiswa');

@@ -22,8 +22,10 @@ class MataKuliah extends Model
     protected $fillable = [
         'kode_mk',
         'nama_mk',
+        'semester',
         'sks',
-        'nidn_dosenpengampu',
+        'jenis',
+        'nama_dosenpengampu',
     ];
 
     // Relasi dengan model KHS
