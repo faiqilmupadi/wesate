@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('ruangperkuliahan', function (Blueprint $table) {
             $table->string('kode_ruang', 25)->primary(); // Primary key untuk kode ruang
             $table->string('gedung', 50); // Nama gedung
-            $table->integer('kepasitas');
+            $table->integer('kapasitas');
             $table->timestamps(); // Untuk mencatat waktu pembuatan dan update
         });
     }

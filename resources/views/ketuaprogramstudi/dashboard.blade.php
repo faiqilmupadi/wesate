@@ -162,8 +162,8 @@
             <button type="button" class="btn btn-outline-success btn-lg">Monitoring IRS</button>
             <button type="button" class="btn btn-outline-success btn-lg">Penyusunan Jadwal Kuliah</button>
             <button type="button" class="btn btn-outline-success btn-lg"
-                onclick="window.location.href='{{ route('memilihmatakuliah.create') }}'">Penyusunan Matakuliah</button>
-
+            onclick="window.location.href='{{ route('memilihmatakuliah.create') }}'">Penyusunan Matakuliah</button>
+            <button type="button" class="btn btn-outline-success btn-lg">Daftar Alokasi Ruang Perkuliahan</button>
         </div>
     </div>
 

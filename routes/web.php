@@ -53,8 +53,12 @@ Route::get('memilihmatakuliah', function () {
     return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
 })->name('memilihmatakuliah');
 
-Route::get('penyusunanruang', [BagianAkademik::class, 'create'])->name('penyusunanruang.create');
-Route::post('penyusunanruang', [BagianAkademik::class, 'store'])->name('penyusunanruang.store');
+Route::get('penyusunanruang', function () {
+    return view('bagianakademik.penyusunanruang', ['title' => 'penyusunanruang']);
+})->name('penyusunanruang');
+
+Route::get('/penyusunanruang', [BagianAkademikController::class, 'create'])->name('penyusunanruang.create');
+Route::post('/penyusunanruang', [BagianAkademikController::class, 'store'])->name('penyusunanruang.store');
 
 Route::post('pemilihanrole', [UserController::class, 'handleRoleSelection'])->name('handleRoleSelection');
 // Route::get('/dashboard/mahasiswa', [UserController::class, 'mahasiswa'])->name('mahasiswa');
