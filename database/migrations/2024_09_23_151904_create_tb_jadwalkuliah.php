@@ -11,7 +11,7 @@ return new class extends Migration
         Schema::create('jadwalkuliah', function (Blueprint $table) {
             $table->id(); // ID unik untuk setiap jadwal kuliah
             $table->string('kode_mk', 8); // Foreign key untuk kode mata kuliah
-            $table->string('kode_ruang', 50); // Foreign key untuk kode ruang
+            $table->string('kode_ruang', 25); // Foreign key untuk kode ruang
             $table->string('hari', 10); // Hari perkuliahan
             $table->time('jam'); // Jam perkuliahan
             $table->string('nama_kelas', 10); // Foreign key untuk nama kelas

@@ -14,8 +14,10 @@ return new class extends Migration
             $table->integer('semester'); // Jumlah SKS mata kuliah
             $table->integer('sks'); // Jumlah SKS mata kuliah
             $table->string('jenis', 10);
-            $table->string('nama_dosenpengampu', 50);
+            $table->string('nidn_dosenpengampu', 18);
             $table->timestamps(); // Untuk mencatat waktu pembuatan dan update
+
+            $table->foreign('nidn_dosenpengampu')->references('nidn_dosenpengampu')->on('dosenpengampu')->onDelete('cascade');
         });
     }
 

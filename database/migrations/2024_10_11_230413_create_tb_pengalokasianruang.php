@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('pengalokasianruang', function (Blueprint $table) {
-            $table->string('kode_ruang', 25)->primary();
-            $table->string('nama_dosenpengampu', 50);
+            $table->id();
+            $table->string('kode_ruang', 25);
+            $table->unsignedBigInteger('id_programstudi'); 
+            $table->foreign('id_programstudi')->references('id_programstudi')->on('program_studi')->onDelete('cascade');
+            $table->foreign('kode_ruang')->references('kode_ruang')->on('ruangperkuliahan')->onDelete('cascade');
             $table->timestamps();
         });
     }
