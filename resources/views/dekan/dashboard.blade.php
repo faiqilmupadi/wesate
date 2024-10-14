@@ -135,7 +135,7 @@
 
     <div class="d-grid gap-4">
         <button type="button" class="btn btn-outline-success btn-lg">Jadwal Perkuliahan</button>
-        <button type="button" class="btn btn-outline-success btn-lg" onclick="window.location.href='{{ route('pengajuan.create') }}'">Ruang perkuliahan</button>
+        <button type="button" class="btn btn-outline-success btn-lg" onclick="window.location.href='{{ route('dekan.approveruang') }}'">Ruang perkuliahan</button>
 
     </div>
 </div>
