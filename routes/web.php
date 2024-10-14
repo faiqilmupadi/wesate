@@ -48,6 +48,18 @@ Route::get('pemilihanrole', function () {
     return view('user.pemilihanrole', ['title' => 'pemilihanrole']);
 })->name('pemilihanrole');
 
+Route::get('approveruang', function () {
+    return view('dekan.approveruang', ['title' => 'approveruang']);
+})->name('approveruang');
+
+// Route::get('memilihmatakuliah', function () {
+//     return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
+// })->name('memilihmatakuliah');
+
+// Route::get('penyusunanruang', function () {
+//     return view('bagianakademik.penyusunanruang', ['title' => 'penyusunanruang']);
+// })->name('penyusunanruang');
+
 Route::get('bagianakademik/penyusunanruang', [BagianAkademikController::class, 'createPenyusunanRuang'])->name('penyusunanruang.create');
 Route::post('penyusunanruang', [BagianAkademikController::class, 'storePengalokasianRuang'])->name('penyusunanruang.store');
 Route::get('bagianakademik/pengalokasianruang', [BagianAkademikController::class, 'createPengalokasianRuang'])->name('pengalokasianruang.create');
