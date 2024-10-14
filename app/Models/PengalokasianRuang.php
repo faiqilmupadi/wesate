@@ -12,18 +12,21 @@ class PengalokasianRuang extends Model
     // Tabel yang digunakan oleh model ini
     protected $table = 'pengalokasianruang';
 
-    public $incrementing = false;
+    public $incrementing = true;
 
     // Atribut yang bisa diisi (fillable)
     protected $fillable = [
         'kode_ruang',
-        'nama_programstudi',
+        'id_programstudi',
     ];
 
-    // Relasi dengan model Dosen Pengampu
     public function ruangperkuliahan()
     {
         return $this->belongsTo(RuangPerkuliahan::class, 'kode_ruang', 'kode_ruang');
     }
-
+    // Relasi dengan Program Studi
+    public function programStudi()
+    {
+        return $this->belongsTo(ProgramStudi::class, 'id_programstudi', 'id_programstudi');
+    }
 }

@@ -66,14 +66,19 @@ class ProgramStudi extends Model
     {
         return $this->hasMany(Mahasiswa::class, 'id_programstudi', 'id_programstudi');
     }
+
+    public function pengalokasianruang()
+    {
+        return $this->hasMany(PengalokasianRuang::class, 'id_programstudi', 'id_programstudi');
+    }
 }
 
-// Mengambil data program studi dan fakultas terkait
-$programStudi = ProgramStudi::find(1);
+// // Mengambil data program studi dan fakultas terkait
+// $programStudi = ProgramStudi::find(1);
 
-if ($programStudi) {
-    echo 'Nama Program Studi: ' . $programStudi->nama_programstudi . PHP_EOL;
-    echo 'Nama Fakultas: ' . $programStudi->fakultas->nama_fakultas . PHP_EOL;
-} else {
-    echo 'Program studi tidak ditemukan.' . PHP_EOL;
-}
+// if ($programStudi) {
+//     echo 'Nama Program Studi: ' . $programStudi->nama_programstudi . PHP_EOL;
+//     echo 'Nama Fakultas: ' . $programStudi->fakultas->nama_fakultas . PHP_EOL;
+// } else {
+//     echo 'Program studi tidak ditemukan.' . PHP_EOL;
+// }

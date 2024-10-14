@@ -12,7 +12,7 @@ class JadwalKuliah extends Model
     protected $table = 'jadwalkuliah';
 
     
-    public $incrementing = false;
+    public $incrementing = true;
 
     protected $fillable = [
         'kode_mk',

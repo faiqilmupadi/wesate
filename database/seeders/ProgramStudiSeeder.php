@@ -14,7 +14,7 @@ class ProgramStudiSeeder extends Seeder
     public function run(): void
     {
         $programstudi = new ProgramStudi();
-        $programstudi -> nama_programstudi = 'Informatika';
+        $programstudi -> nama_programstudi = 'Matematika';
         $programstudi -> id_fakultas = 1;
         $programstudi -> save(); 
     }

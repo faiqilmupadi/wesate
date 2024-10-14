@@ -4,8 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\KetuaProgramStudiController;
 use App\Http\Controllers\BagianAkademikController;
-use App\Models\BagianAkademik;
-
+use App\Http\Controllers\DekanController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -49,20 +48,27 @@ Route::get('pemilihanrole', function () {
     return view('user.pemilihanrole', ['title' => 'pemilihanrole']);
 })->name('pemilihanrole');
 
-Route::get('memilihmatakuliah', function () {
-    return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
-})->name('memilihmatakuliah');
+Route::get('approveruang', function () {
+    return view('dekan.approveruang', ['title' => 'approveruang']);
+})->name('approveruang');
 
-Route::get('penyusunanruang', function () {
-    return view('bagianakademik.penyusunanruang', ['title' => 'penyusunanruang']);
-})->name('penyusunanruang');
+// Route::get('memilihmatakuliah', function () {
+//     return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
+// })->name('memilihmatakuliah');
 
-Route::get('/penyusunanruang', [BagianAkademikController::class, 'create'])->name('penyusunanruang.create');
-Route::post('/penyusunanruang', [BagianAkademikController::class, 'store'])->name('penyusunanruang.store');
+// Route::get('penyusunanruang', function () {
+//     return view('bagianakademik.penyusunanruang', ['title' => 'penyusunanruang']);
+// })->name('penyusunanruang');
+
+Route::get('penyusunanruang', [BagianAkademikController::class, 'create'])->name('penyusunanruang.create');
+Route::post('penyusunanruang', [BagianAkademikController::class, 'store'])->name('penyusunanruang.store');
+Route::get('pengalokasianruang', [BagianAkademikController::class, 'createPengalokasian'])->name('pengalokasianruang.create');
+Route::post('pengalokasianruang', [BagianAkademikController::class, 'storePengalokasianRuang'])->name('pengalokasianruang.store');
+
+Route::get('/dekan/approve', [DekanController::class, 'create'])->name('dekan.approveruang');
+Route::patch('/pengajuan/update/{id}', [DekanController::class, 'updatePengajuan'])->name('pengajuan.update');
 
 Route::post('pemilihanrole', [UserController::class, 'handleRoleSelection'])->name('handleRoleSelection');
-// Route::get('/dashboard/mahasiswa', [UserController::class, 'mahasiswa'])->name('mahasiswa');
-// Route::get('/dashboard/kaprodi', [UserController::class, 'kaprodi'])->name('kaprodi');
 
 
 Route::get('register', [UserController::class, 'register'])->name('register');

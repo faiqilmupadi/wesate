@@ -34,4 +34,9 @@ class RuangPerkuliahan extends Model
     {
         return $this->hasMany(JadwalKuliah::class, 'kode_ruang', 'kode_ruang');
     }
+
+    public function pengalokasianruang()
+    {
+        return $this->hasMany(PengalokasianRuang::class, 'kode_ruang', 'kode_ruang');
+    }
 }

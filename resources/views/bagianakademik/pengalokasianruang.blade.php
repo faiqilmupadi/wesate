@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Penyusunan Ruang Perkuliahan</title>
+    <title>Pengalokasian Ruang Perkuliahan</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
@@ -65,10 +65,12 @@
             background-color: #007bff;
             /* Warna biru */
             color: white;
-            border-radius: 8px; /* Border radius untuk memperhalus tombol */
-            margin-right: 10px; /* Jarak antara tombol SIMPAN dan LIHAT */
+            border-radius: 8px;
+            /* Border radius untuk memperhalus tombol */
+            margin-right: 10px;
+            /* Jarak antara tombol SIMPAN dan LIHAT */
         }
-        
+
         .btn-custom-secondary {
             background-color: #28a745;
             /* Warna hijau */
@@ -88,10 +90,13 @@
             border-radius: 8px;
         }
 
+
         .btn-container {
             display: flex;
-            justify-content: space-between; /* Tombol Back di kiri, SIMPAN dan LIHAT di kanan */
-            margin-bottom: 20px; /* Jarak keseluruhan di bawah tombol */
+            justify-content: space-between;
+            /* Tombol Back di kiri, SIMPAN dan LIHAT di kanan */
+            margin-bottom: 20px;
+            /* Jarak keseluruhan di bawah tombol */
         }
 
         .btn-right {
@@ -115,45 +120,61 @@
         <br>
         <h4>Penyusunan Ruang Perkuliahan</h4>
 
-        <h5>Pengisian Data Alokasi Ruangan: </h5>
+        <h5>Pengisian Data Ruangan: </h5>
         <br>
-        @if (session('success'))
+        @if (session('successAjukan'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
-                {{ session('success') }}
+                {{ session('successAjukan') }}
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
         @endif
 
+        
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+
         <div class="form">
-            <form action="{{ route('penyusunanruang.store') }}" method="POST">
+            <form action="{{ route('pengalokasianruang.store') }}" method="POST">
                 @csrf
                 <div class="form-group">
-                    <label for="kode">Kode Ruang</label>
-                    <input type="text" class="form-control" id="kode" name="kode"
-                        placeholder="Masukkan Kode Ruang" required>
+                    <label for="kode_ruang">Kode Ruang</label>
+                    <select name="kode_ruang" class="form-control" id="kode_ruang" required>
+                        <option value="">Pilih Kode Ruang</option>
+                        @foreach ($ruangPerkuliahan as $ruang)
+                            <option value="{{ $ruang->kode_ruang }}">{{ $ruang->kode_ruang }}</option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="gedung">Gedung</label>
-                    <input type="text" class="form-control" id="gedung" name="gedung"
-                        placeholder="Masukkan Nama Gedung" required>
-                </div>
-                <div class="form-group">
-                    <label for="kapasitas">Kapasitas</label>
-                    <input type="number" class="form-control" id="kapasitas" name="kapasitas"
-                        placeholder="Masukkan Kapasitas" required>
+                    <label for="id_programstudi">Program Studi</label>
+                    <select name="id_programstudi" class="form-control" id="id_programstudi" required>
+                        <option value="">Pilih Program Studi</option>
+                        @foreach ($programStudi as $prodi)
+                            <option value="{{ $prodi->id_programstudi }}">{{ $prodi->nama_programstudi }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <!-- Menggunakan div container untuk tombol -->
                 <div class="btn-container">
                     <!-- Tombol back di sebelah kiri -->
-                    <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='{{ route('bagianakademik') }}'">←</button>
-                    
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="window.location.href='{{ route('bagianakademik') }}'">←</button>
+
                     <!-- Tombol simpan dan lihat di sebelah kanan -->
                     <div class="btn-right">
-                        <button type="submit" class="btn btn-custom">SIMPAN</button>
+                        <button type="submit" class="btn btn-custom">AJUKAN</button>
                         <button type="button" class="btn btn-custom-secondary">LIHAT</button>
+
                     </div>
                 </div>
             </form>
