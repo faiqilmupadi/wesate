@@ -60,9 +60,9 @@ Route::get('approveruang', function () {
 //     return view('bagianakademik.penyusunanruang', ['title' => 'penyusunanruang']);
 // })->name('penyusunanruang');
 
-Route::get('penyusunanruang', [BagianAkademikController::class, 'create'])->name('penyusunanruang.create');
-Route::post('penyusunanruang', [BagianAkademikController::class, 'store'])->name('penyusunanruang.store');
-Route::get('pengalokasianruang', [BagianAkademikController::class, 'createPengalokasian'])->name('pengalokasianruang.create');
+Route::get('penyusunanruang', [BagianAkademikController::class, 'createPenyusunanRuang'])->name('penyusunanruang.create');
+Route::post('penyusunanruang', [BagianAkademikController::class, 'storePengalokasianRuang'])->name('penyusunanruang.store');
+Route::get('pengalokasianruang', [BagianAkademikController::class, 'createPengalokasianRuang'])->name('pengalokasianruang.create');
 Route::post('pengalokasianruang', [BagianAkademikController::class, 'storePengalokasianRuang'])->name('pengalokasianruang.store');
 
 Route::get('/dekan/approve', [DekanController::class, 'create'])->name('dekan.approveruang');

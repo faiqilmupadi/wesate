@@ -9,13 +9,13 @@ use Illuminate\Http\Request;
 
 class BagianAkademikController extends Controller
 {
-    public function create()
+    public function createPenyusunanRuang()
     {
         return view('bagianakademik.penyusunanruang');
     }
 
     // Method untuk menyimpan data
-    public function store(Request $request)
+    public function storePenyusunanRuang(Request $request)
     {
         // Validasi input
         $validatedData = $request->validate([
@@ -36,7 +36,7 @@ class BagianAkademikController extends Controller
     }
 
     // Menampilkan form penyusunan ruang
-    public function createPengalokasian()
+    public function createPengalokasianRuang()
     {
         // Mengambil data dari tabel ruangperkuliahan dan program_studi
         $ruangPerkuliahan = RuangPerkuliahan::all();
