@@ -52,9 +52,9 @@ Route::get('approveruang', function () {
     return view('dekan.approveruang', ['title' => 'approveruang']);
 })->name('approveruang');
 
-// Route::get('memilihmatakuliah', function () {
-//     return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
-// })->name('memilihmatakuliah');
+Route::get('memilihmatakuliah', function () {
+    return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
+})->name('memilihmatakuliah');
 
 // Route::get('penyusunanruang', function () {
 //     return view('bagianakademik.penyusunanruang', ['title' => 'penyusunanruang']);
