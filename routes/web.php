@@ -65,7 +65,7 @@ Route::post('penyusunanruang', [BagianAkademikController::class, 'storePengaloka
 Route::get('pengalokasianruang', [BagianAkademikController::class, 'createPengalokasianRuang'])->name('pengalokasianruang.create');
 Route::post('pengalokasianruang', [BagianAkademikController::class, 'storePengalokasianRuang'])->name('pengalokasianruang.store');
 
-Route::get('/dekan/approve', [DekanController::class, 'create'])->name('dekan.approveruang');
+Route::get('/dekan/approve', [DekanController::class, 'createPengajuan'])->name('dekan.approveruang');
 Route::patch('/pengajuan/update/{id}', [DekanController::class, 'updatePengajuan'])->name('pengajuan.update');
 
 Route::post('pemilihanrole', [UserController::class, 'handleRoleSelection'])->name('handleRoleSelection');

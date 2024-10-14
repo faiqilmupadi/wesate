@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 
 class DekanController extends Controller
 {
-    public function create()
+    public function createPengajuan()
     {
         // Ambil semua pengajuan dari tabel pengalokasianruang
         $pengajuans = PengalokasianRuang::all();
