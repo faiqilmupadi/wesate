@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Approve Ruangan</title>
+    <title>Approve Jadwal Kuliah</title>
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -49,7 +49,7 @@
     <div class="container mt-4">
         <div class="search-box">
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Cari Alokasi Ruang Perkuliahan"
+                <input class="form-control me-2" type="search" placeholder="Cari Jadwal Kuliah"
                     aria-label="Search">
                 <button class="btn btn-outline-secondary" type="submit">
                     <i class="bi bi-search"></i> <!-- Bootstrap Icons -->
@@ -57,7 +57,7 @@
             </form>
         </div>
         <div class="table-container">
-            <h4 class="mt-4">Daftar Alokasi Ruang Perkuliahan</h4>
+            <h4 class="mt-4">Daftar Pengajuan Jadwal Kuliah</h4>
 
             @if (session('message'))
                 <div class="alert alert-success">
@@ -74,23 +74,29 @@
             <table class="table table-bordered table-striped">
                 <thead class="table-dark">
                     <tr>
+                        <th>Kode Mata Kuliah</th>
                         <th>Kode Ruang</th>
-                        <th>ID Program Studi</th>
+                        <th>Hari</th>
+                        <th>Jam</th>
+                        <th>Nama Kelas</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($pengajuans as $pengajuan)
                         <tr>
+                            <td>{{ $pengajuan->kode_mk }}</td>
                             <td>{{ $pengajuan->kode_ruang }}</td>
-                            <td>{{ $pengajuan->id_programstudi }}</td>
+                            <td>{{ $pengajuan->hari }}</td>
+                            <td>{{ $pengajuan->jam }}</td>
+                            <td>{{ $pengajuan->nama_kelas }}</td>
                             <td>
                                 @if (session('approved_pengajuans') && array_key_exists($pengajuan->id, session('approved_pengajuans')))
                                     <span class="text-success">Disetujui</span>
                                 @elseif (session('rejected_pengajuans') && array_key_exists($pengajuan->id, session('rejected_pengajuans')))
                                     <span class="text-danger">Ditolak</span>
                                 @else
-                                    <form action="{{ route('pengajuan.updateRuang', $pengajuan->id) }}" method="POST"
+                                    <form action="{{ route('pengajuan.updateJadwal', $pengajuan->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         <input type="hidden" name="_method" value="PATCH">
@@ -114,16 +120,23 @@
                     <!-- Menampilkan pengajuan yang disetujui -->
                     @foreach (session('approved_pengajuans', []) as $approved)
                         <tr>
+                            <td>{{ $approved['kode_mk'] }}</td>
                             <td>{{ $approved['kode_ruang'] }}</td>
-                            <td>{{ $approved['id_programstudi'] }}</td>
+                            <td>{{ $approved['hari'] }}</td>
+                            <td>{{ $approved['jam'] }}</td>
+                            <td>{{ $approved['nama_kelas'] }}</td>
                             <td><span class="text-success">Disetujui</span></td>
                         </tr>
                     @endforeach
+
                     <!-- Menampilkan pengajuan yang ditolak -->
                     @foreach (session('rejected_pengajuans', []) as $rejected)
                         <tr>
+                            <td>{{ $rejected['kode_mk'] }}</td>
                             <td>{{ $rejected['kode_ruang'] }}</td>
-                            <td>{{ $rejected['id_programstudi'] }}</td>
+                            <td>{{ $rejected['hari'] }}</td>
+                            <td>{{ $rejected['jam'] }}</td>
+                            <td>{{ $rejected['nama_kelas'] }}</td>
                             <td><span class="text-danger">Ditolak</span></td>
                         </tr>
                     @endforeach
@@ -133,7 +146,6 @@
 
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
 </body>
 
 </html>

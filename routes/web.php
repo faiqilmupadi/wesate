@@ -24,6 +24,7 @@ Route::get('/', function () {
     return view('user.login', ['title' => 'Login']);
 })->name('login');
 
+// dashboard
 Route::get('mahasiswa', function () {
     return view('mahasiswa.dashboard', ['title' => 'Mahasiswa']);
 })->name('mahasiswa');
@@ -44,33 +45,41 @@ Route::get('pembimbingakademik', function () {
     return view('pembimbingakademik.dashboard', ['title' => 'pembimbingakademik']);
 })->name('pembimbingakademik');
 
+// pemilihan role
 Route::get('pemilihanrole', function () {
     return view('user.pemilihanrole', ['title' => 'pemilihanrole']);
 })->name('pemilihanrole');
+Route::post('pemilihanrole', [UserController::class, 'handleRoleSelection'])->name('handleRoleSelection');
 
-Route::get('approveruang', function () {
-    return view('dekan.approveruang', ['title' => 'approveruang']);
-})->name('approveruang');
-
-Route::get('memilihmatakuliah', function () {
-    return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
-})->name('memilihmatakuliah');
-
-// Route::get('penyusunanruang', function () {
-//     return view('bagianakademik.penyusunanruang', ['title' => 'penyusunanruang']);
-// })->name('penyusunanruang');
-
+// bagian akademik penyusunan ruang
 Route::get('bagianakademik/penyusunanruang', [BagianAkademikController::class, 'createPenyusunanRuang'])->name('penyusunanruang.create');
-Route::post('penyusunanruang', [BagianAkademikController::class, 'storePengalokasianRuang'])->name('penyusunanruang.store');
+Route::post('penyusunanruang', [BagianAkademikController::class, 'storePenyusunanRuang'])->name('penyusunanruang.store');
+
+// bagian akademik pengalokasian ruang
 Route::get('bagianakademik/pengalokasianruang', [BagianAkademikController::class, 'createPengalokasianRuang'])->name('pengalokasianruang.create');
 Route::post('pengalokasianruang', [BagianAkademikController::class, 'storePengalokasianRuang'])->name('pengalokasianruang.store');
 
-Route::get('/dekan/approve', [DekanController::class, 'createPengajuan'])->name('dekan.approveruang');
-Route::patch('/pengajuan/update/{id}', [DekanController::class, 'updatePengajuan'])->name('pengajuan.update');
+// dekan menyetujui ruangan
+Route::get('/dekan/approve-ruang', [DekanController::class, 'createPengajuanRuang'])->name('dekan.approveruang');
+Route::patch('/pengajuan/update/{id}', [DekanController::class, 'updatePengajuanRuang'])->name('pengajuan.updateRuang');
 
-Route::post('pemilihanrole', [UserController::class, 'handleRoleSelection'])->name('handleRoleSelection');
+//dekan menyetujui jadwal
+Route::get('/dekan/approve-jadwal', [DekanController::class, 'createPengajuanJadwal'])->name('dekan.approvejadwal');
+Route::patch('/dekan/update-pengajuan/{id}', [DekanController::class, 'updatePengajuanJadwal'])->name('pengajuan.updateJadwal');
+
+//kaprodi menyusun matakuliah
+// Route::get('memilihmatakuliah', function () {
+//     return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
+// })->name('memilihmatakuliah');
+Route::get('memilihmatakuliah', [KetuaProgramStudiController::class, 'createMemilihMataKuliah'])->name('memilihmatakuliah.create');
+Route::post('memilihmatakuliah', [KetuaProgramStudiController::class, 'storeMemilihMataKuliah'])->name('memilihmatakuliah.store');
+
+//kaprodi jadwal kuliah
+Route::get('JadwalKuliah', [KetuaProgramStudiController::class, 'createJadwalKuliah'])->name('jadwalkuliah.create');
+Route::post('JadwalKuliah', [KetuaProgramStudiController::class, 'storeJadwalKuliah'])->name('jadwalkuliah.store');
 
 
+// login
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::post('register', [UserController::class, 'register_action'])->name('register.action');
 Route::get('login', [UserController::class, 'login'])->name('login');
@@ -79,9 +88,7 @@ Route::get('password', [UserController::class, 'password'])->name('password');
 Route::post('password', [UserController::class, 'password_action'])->name('password.action');
 Route::get('logout', [UserController::class, 'logout'])->name('logout');
 
-Route::get('memilihmatakuliah', [KetuaProgramStudiController::class, 'create'])->name('memilihmatakuliah.create');
-Route::post('memilihmatakuliah', [KetuaProgramStudiController::class, 'store'])->name('memilihmatakuliah.store');
-Route::get('memilihmatakuliah/{kode_mk}', [KetuaProgramStudiController::class, 'show'])->name('memilihmatakuliah.show');
-Route::get('memilihmatakuliah/{id}/edit', [KetuaProgramStudiController::class, 'edit'])->name('memilihmatakuliah.edit');
-Route::put('memilihmatakuliah/{id}', [KetuaProgramStudiController::class, 'update'])->name('memilihmatakuliah.update');
-Route::delete('memilihmatakuliah/{id}', [KetuaProgramStudiController::class, 'destroy'])->name('memilihmatakuliah.destroy');
+// Route::get('memilihmatakuliah/{kode_mk}', [KetuaProgramStudiController::class, 'show'])->name('memilihmatakuliah.show');
+// Route::get('memilihmatakuliah/{id}/edit', [KetuaProgramStudiController::class, 'edit'])->name('memilihmatakuliah.edit');
+// Route::put('memilihmatakuliah/{id}', [KetuaProgramStudiController::class, 'update'])->name('memilihmatakuliah.update');
+// Route::delete('memilihmatakuliah/{id}', [KetuaProgramStudiController::class, 'destroy'])->name('memilihmatakuliah.destroy');

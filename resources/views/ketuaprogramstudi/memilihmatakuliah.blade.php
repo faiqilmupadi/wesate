@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="id">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SATE - Sistem Akademik Terpadu dan Efisien</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -76,7 +78,8 @@
             max-width: 500px;
         }
 
-        input, select {
+        input,
+        select {
             padding: 12px;
             margin-bottom: 20px;
             border: 2px solid #ccc;
@@ -121,6 +124,7 @@
         }
     </style>
 </head>
+
 <body>
     <header>
         <img src="logo.png" alt="Logo SATE">
@@ -135,6 +139,20 @@
             <h3>PENYUSUNAN MATA KULIAH</h3>
             <form action="{{ route('memilihmatakuliah.store') }}" method="POST">
                 @csrf <!-- Token CSRF untuk keamanan -->
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if ($errors->any())
+                    <div class="error-message">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                @endif
 
                 <label for="kode_mk">Kode Mata Kuliah</label>
                 <input id="kode_mk" type="text" name="kode_mk" placeholder="Masukkan kode mata kuliah" required>
@@ -142,8 +160,18 @@
                 <label for="nama_mk">Nama Mata Kuliah</label>
                 <input id="nama_mk" type="text" name="nama_mk" placeholder="Masukkan nama mata kuliah" required>
 
+                <label for="semester">Semester</label>
+                <input id="semester" type="number" name="semester" placeholder="Masukkan semester" required>
+
                 <label for="sks">Jumlah SKS</label>
                 <input id="sks" type="number" name="sks" placeholder="Masukkan jumlah SKS" required>
+
+                <label for="jenis">Jenis</label>
+                <select class="form-control" id="jenis" name="jenis" required>
+                    <option value="">Pilih jenis Mata kuliah</option>
+                    <option value="Wajib">Wajib</option>
+                    <option value="Pilihan">Pilihan</option>
+                </select>
 
                 <label for="nidn_dosenpengampu">Dosen Pengampu</label>
                 <select id="nidn_dosenpengampu" name="nidn_dosenpengampu" required>
@@ -159,5 +187,9 @@
     </div>
 
     <button class="back-btn" onclick="window.location.href='{{ route('ketuaprogramstudi') }}'">←</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.js"></script>
 </body>
+
 </html>

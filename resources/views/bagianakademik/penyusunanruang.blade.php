@@ -65,10 +65,12 @@
             background-color: #007bff;
             /* Warna biru */
             color: white;
-            border-radius: 8px; /* Border radius untuk memperhalus tombol */
-            margin-right: 10px; /* Jarak antara tombol SIMPAN dan LIHAT */
+            border-radius: 8px;
+            /* Border radius untuk memperhalus tombol */
+            margin-right: 10px;
+            /* Jarak antara tombol SIMPAN dan LIHAT */
         }
-        
+
         .btn-custom-secondary {
             background-color: #28a745;
             /* Warna hijau */
@@ -90,8 +92,10 @@
 
         .btn-container {
             display: flex;
-            justify-content: space-between; /* Tombol Back di kiri, SIMPAN dan LIHAT di kanan */
-            margin-bottom: 20px; /* Jarak keseluruhan di bawah tombol */
+            justify-content: space-between;
+            /* Tombol Back di kiri, SIMPAN dan LIHAT di kanan */
+            margin-bottom: 20px;
+            /* Jarak keseluruhan di bawah tombol */
         }
 
         .btn-right {
@@ -117,6 +121,13 @@
 
         <h5>Pengisian Data Alokasi Ruangan: </h5>
         <br>
+        @if (session('error'))
+            <div class="alert alert-danger">
+                {{ session('error') }}
+            </div>
+        @endif
+
+
         @if (session('success'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('success') }}
@@ -125,6 +136,7 @@
                 </button>
             </div>
         @endif
+
 
         <div class="form">
             <form action="{{ route('penyusunanruang.store') }}" method="POST">
@@ -148,8 +160,9 @@
                 <!-- Menggunakan div container untuk tombol -->
                 <div class="btn-container">
                     <!-- Tombol back di sebelah kiri -->
-                    <button type="button" class="btn btn-outline-secondary" onclick="window.location.href='{{ route('bagianakademik') }}'">←</button>
-                    
+                    <button type="button" class="btn btn-outline-secondary"
+                        onclick="window.location.href='{{ route('bagianakademik') }}'">←</button>
+
                     <!-- Tombol simpan dan lihat di sebelah kanan -->
                     <div class="btn-right">
                         <button type="submit" class="btn btn-custom">SIMPAN</button>

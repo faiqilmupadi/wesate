@@ -25,7 +25,7 @@ class MataKuliah extends Model
         'semester',
         'sks',
         'jenis',
-        'nama_dosenpengampu',
+        'nidn_dosenpengampu',
     ];
 
     // Relasi dengan model KHS

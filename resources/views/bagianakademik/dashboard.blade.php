@@ -162,8 +162,6 @@
         </div>
     </div>
 
-
-
     <div class="profile">
         <img src="profile.png" alt="Profile Image">
         <div class="profile-name">
