@@ -61,11 +61,11 @@ Route::post('pengalokasianruang', [BagianAkademikController::class, 'storePengal
 
 // dekan menyetujui ruangan
 Route::get('/dekan/approve-ruang', [DekanController::class, 'createPengajuanRuang'])->name('dekan.approveruang');
-Route::patch('/pengajuan/update/{id}', [DekanController::class, 'updatePengajuanRuang'])->name('pengajuan.updateRuang');
+Route::patch('/pengajuan/update/{id}', [DekanController::class, 'updatePengajuanRuang'])->name('pengajuan.updateruang');
 
 //dekan menyetujui jadwal
 Route::get('/dekan/approve-jadwal', [DekanController::class, 'createPengajuanJadwal'])->name('dekan.approvejadwal');
-Route::patch('/dekan/update-pengajuan/{id}', [DekanController::class, 'updatePengajuanJadwal'])->name('pengajuan.updateJadwal');
+Route::patch('/dekan/update-pengajuan/{id}', [DekanController::class, 'updatePengajuanJadwal'])->name('pengajuan.updatejadwal');
 
 //kaprodi menyusun matakuliah
 // Route::get('memilihmatakuliah', function () {
@@ -77,7 +77,6 @@ Route::post('memilihmatakuliah', [KetuaProgramStudiController::class, 'storeMemi
 //kaprodi jadwal kuliah
 Route::get('JadwalKuliah', [KetuaProgramStudiController::class, 'createJadwalKuliah'])->name('jadwalkuliah.create');
 Route::post('JadwalKuliah', [KetuaProgramStudiController::class, 'storeJadwalKuliah'])->name('jadwalkuliah.store');
-
 
 // login
 Route::get('register', [UserController::class, 'register'])->name('register');

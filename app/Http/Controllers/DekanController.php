@@ -11,10 +11,10 @@ class DekanController extends Controller
     public function createPengajuanRuang()
     {
         // Ambil semua pengajuan dari tabel pengalokasianruang
-        $pengajuans = PengalokasianRuang::all();
+        $pengajuans_ruang = PengalokasianRuang::all();
 
         // Kirim data ke view
-        return view('dekan.approveruang', compact('pengajuans'));
+        return view('dekan.approveruang', compact('pengajuans_ruang'));
     }
 
     public function createPengajuanJadwal()
@@ -25,33 +25,33 @@ class DekanController extends Controller
         // Kirim data ke view
         return view('dekan.approvejadwal', compact('pengajuans'));
     }
-    
+
     // Menyetujui atau menolak pengalokasian ruang (diakses oleh dekan)
     public function updatePengajuanRuang(Request $request, $id)
     {
-        $pengajuan = PengalokasianRuang::findOrFail($id);
+        $pengajuanruang = PengalokasianRuang::findOrFail($id);
 
         // Mendapatkan data pengajuan yang ditolak dari session
-        $rejectedPengajuans = session('rejected_pengajuans', []);
+        $rejectedPengajuansruang = session('rejected_pengajuansruang', []);
 
         // Mendapatkan data pengajuan yang disetujui dari session
-        $approvedPengajuans = session('approved_pengajuans', []);
+        $approvedPengajuansruang = session('approved_pengajuansruang', []);
 
         if ($request->input('action') === 'setuju') {
             // Simpan data pengajuan yang disetujui ke dalam session
-            $approvedPengajuans[$id] = ['kode_ruang' => $pengajuan->kode_ruang, 'id_programstudi' => $pengajuan->id_programstudi];
-            session(['approved_pengajuans' => $approvedPengajuans]);
+            $approvedPengajuansruang[$id] = ['kode_ruang' => $pengajuanruang->kode_ruang, 'id_programstudi' => $pengajuanruang->id_programstudi];
+            session(['approved_pengajuansruang' => $approvedPengajuansruang]);
 
-            return redirect()->route('dekan.approveruang')->with('message', 'Pengajuan dengan kode ruang ' . $pengajuan->kode_ruang . ' telah disetujui.');
+            return redirect()->route('dekan.approveruang')->with('message', 'Pengajuan dengan kode ruang ' . $pengajuanruang->kode_ruang . ' telah disetujui.');
         } elseif ($request->input('action') === 'tolak') {
             // Simpan data pengajuan yang ditolak ke dalam session
-            $rejectedPengajuans[$id] = ['kode_ruang' => $pengajuan->kode_ruang, 'id_programstudi' => $pengajuan->id_programstudi];
-            session(['rejected_pengajuans' => $rejectedPengajuans]);
+            $rejectedPengajuansruang[$id] = ['kode_ruang' => $pengajuanruang->kode_ruang, 'id_programstudi' => $pengajuanruang->id_programstudi];
+            session(['rejected_pengajuansruang' => $rejectedPengajuansruang]);
 
             // Hapus pengajuan dari database
-            $pengajuan->delete();
+            $pengajuanruang->delete();
 
-            return redirect()->route('dekan.approveruang')->with('message', 'Pengajuan dengan kode ruang ' . $pengajuan->kode_ruang . ' telah ditolak dan dihapus.');
+            return redirect()->route('dekan.approveruang')->with('message', 'Pengajuan dengan kode ruang ' . $pengajuanruang->kode_ruang . ' telah ditolak dan dihapus.');
         }
 
         return redirect()->route('dekan.approveruang')->with('error', 'Tindakan tidak valid.');
@@ -80,8 +80,8 @@ class DekanController extends Controller
             session(['approved_pengajuans' => $approvedPengajuans]);
 
             // Update status jadwal menjadi disetujui
-            $pengajuan->status = 'disetujui';
-            $pengajuan->save();
+            // $pengajuan->status = 'disetujui';
+            // $pengajuan->save();
 
             return redirect()->route('dekan.approvejadwal')->with('message', 'Jadwal dengan kode MK ' . $pengajuan->kode_mk . ' telah disetujui.');
         } elseif ($request->input('action') === 'tolak') {

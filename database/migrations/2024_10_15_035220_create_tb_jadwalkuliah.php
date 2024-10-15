@@ -15,10 +15,10 @@ return new class extends Migration
             $table->string('hari', 10); // Hari perkuliahan
             $table->time('jam'); // Jam perkuliahan
             $table->string('nama_kelas', 10); // Foreign key untuk nama kelas
-            $table->string('nidn_dosenpengampu', 18);
+            // $table->string('nidn_dosenpengampu', 18);
             $table->timestamps(); // Untuk mencatat waktu pembuatan dan update
 
-            $table->foreign('nidn_dosenpengampu')->references('nidn_dosenpengampu')->on('dosenpengampu')->onDelete('cascade');
+            // $table->foreign('nidn_dosenpengampu')->references('nidn_dosenpengampu')->on('dosenpengampu')->onDelete('cascade');
             $table->foreign('kode_mk')->references('kode_mk')->on('matakuliah')->onDelete('cascade');
             $table->foreign('kode_ruang')->references('kode_ruang')->on('ruangperkuliahan')->onDelete('cascade');
             $table->foreign('nama_kelas')->references('nama_kelas')->on('kelas')->onDelete('cascade');

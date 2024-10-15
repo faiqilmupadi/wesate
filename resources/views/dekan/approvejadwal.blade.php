@@ -49,8 +49,7 @@
     <div class="container mt-4">
         <div class="search-box">
             <form class="d-flex" role="search">
-                <input class="form-control me-2" type="search" placeholder="Cari Jadwal Kuliah"
-                    aria-label="Search">
+                <input class="form-control me-2" type="search" placeholder="Cari Jadwal Kuliah" aria-label="Search">
                 <button class="btn btn-outline-secondary" type="submit">
                     <i class="bi bi-search"></i> <!-- Bootstrap Icons -->
                 </button>
@@ -96,7 +95,7 @@
                                 @elseif (session('rejected_pengajuans') && array_key_exists($pengajuan->id, session('rejected_pengajuans')))
                                     <span class="text-danger">Ditolak</span>
                                 @else
-                                    <form action="{{ route('pengajuan.updateJadwal', $pengajuan->id) }}" method="POST"
+                                    <form action="{{ route('pengajuan.updatejadwal', $pengajuan->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         <input type="hidden" name="_method" value="PATCH">
@@ -104,7 +103,7 @@
                                         <input type="hidden" name="action" value="setuju">
                                         <button type="submit" class="btn btn-success btn-sm">Setuju</button>
                                     </form>
-                                    <form action="{{ route('pengajuan.update', $pengajuan->id) }}" method="POST"
+                                    <form action="{{ route('pengajuan.updatejadwal', $pengajuan->id) }}" method="POST"
                                         class="d-inline">
                                         @csrf
                                         <input type="hidden" name="_method" value="PATCH">
@@ -119,27 +118,48 @@
 
                     <!-- Menampilkan pengajuan yang disetujui -->
                     @foreach (session('approved_pengajuans', []) as $approved)
-                        <tr>
-                            <td>{{ $approved['kode_mk'] }}</td>
-                            <td>{{ $approved['kode_ruang'] }}</td>
-                            <td>{{ $approved['hari'] }}</td>
-                            <td>{{ $approved['jam'] }}</td>
-                            <td>{{ $approved['nama_kelas'] }}</td>
-                            <td><span class="text-success">Disetujui</span></td>
-                        </tr>
+                        @if (
+                            !empty($approved['kode_mk']) &&
+                                !empty($approved['kode_ruang']) &&
+                                !empty($approved['hari']) &&
+                                !empty($approved['jam']) &&
+                                !empty($approved['nama_kelas']))
+                            <tr>
+                                <td>{{ $approved['kode_mk'] }}</td>
+                                <td>{{ $approved['kode_ruang'] }}</td>
+                                <td>{{ $approved['hari'] }}</td>
+                                <td>{{ $approved['jam'] }}</td>
+                                <td>{{ $approved['nama_kelas'] }}</td>
+                                <td><span class="text-success">Disetujui</span></td>
+                            </tr>
+                        @endif
                     @endforeach
 
                     <!-- Menampilkan pengajuan yang ditolak -->
                     @foreach (session('rejected_pengajuans', []) as $rejected)
-                        <tr>
-                            <td>{{ $rejected['kode_mk'] }}</td>
-                            <td>{{ $rejected['kode_ruang'] }}</td>
-                            <td>{{ $rejected['hari'] }}</td>
-                            <td>{{ $rejected['jam'] }}</td>
-                            <td>{{ $rejected['nama_kelas'] }}</td>
-                            <td><span class="text-danger">Ditolak</span></td>
-                        </tr>
+                        @if (
+                            !empty($rejected['kode_mk']) &&
+                                !empty($rejected['kode_ruang']) &&
+                                !empty($rejected['hari']) &&
+                                !empty($rejected['jam']) &&
+                                !empty($rejected['nama_kelas']))
+                            <tr>
+                                <td>{{ $rejected['kode_mk'] }}</td>
+                                <td>{{ $rejected['kode_ruang'] }}</td>
+                                <td>{{ $rejected['hari'] }}</td>
+                                <td>{{ $rejected['jam'] }}</td>
+                                <td>{{ $rejected['nama_kelas'] }}</td>
+                                <td><span class="text-danger">Ditolak</span></td>
+                            </tr>
+                        @endif
                     @endforeach
+
+                    <!-- Jika tidak ada pengajuan yang disetujui atau ditolak -->
+                    @if (count(session('approved_pengajuans', [])) === 0 && count(session('rejected_pengajuans', [])) === 0)
+                        <tr>
+                            <td colspan="6" class="text-center">Tidak ada pengajuan jadwal kuliah.</td>
+                        </tr>
+                    @endif
                 </tbody>
             </table>
         </div>

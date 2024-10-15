@@ -80,26 +80,26 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($pengajuans as $pengajuan)
+                    @foreach ($pengajuans_ruang as $pengajuanruang)
                         <tr>
-                            <td>{{ $pengajuan->kode_ruang }}</td>
-                            <td>{{ $pengajuan->id_programstudi }}</td>
+                            <td>{{ $pengajuanruang->kode_ruang }}</td>
+                            <td>{{ $pengajuanruang->id_programstudi }}</td>
                             <td>
-                                @if (session('approved_pengajuans') && array_key_exists($pengajuan->id, session('approved_pengajuans')))
+                                @if (session('approved_pengajuansruang') && array_key_exists($pengajuanruang->id, session('approved_pengajuansruang')))
                                     <span class="text-success">Disetujui</span>
-                                @elseif (session('rejected_pengajuans') && array_key_exists($pengajuan->id, session('rejected_pengajuans')))
+                                @elseif (session('rejected_pengajuansruang') && array_key_exists($pengajuanruang->id, session('rejected_pengajuansruang')))
                                     <span class="text-danger">Ditolak</span>
                                 @else
-                                    <form action="{{ route('pengajuan.updateRuang', $pengajuan->id) }}" method="POST"
-                                        class="d-inline">
+                                    <form action="{{ route('pengajuan.updateruang', $pengajuanruang->id) }}"
+                                        method="POST" class="d-inline">
                                         @csrf
                                         <input type="hidden" name="_method" value="PATCH">
                                         <!-- Menyatakan metode PATCH -->
                                         <input type="hidden" name="action" value="setuju">
                                         <button type="submit" class="btn btn-success btn-sm">Setuju</button>
                                     </form>
-                                    <form action="{{ route('pengajuan.update', $pengajuan->id) }}" method="POST"
-                                        class="d-inline">
+                                    <form action="{{ route('pengajuan.updateruang', $pengajuanruang->id) }}"
+                                        method="POST" class="d-inline">
                                         @csrf
                                         <input type="hidden" name="_method" value="PATCH">
                                         <!-- Menyatakan metode PATCH -->
@@ -112,18 +112,18 @@
                     @endforeach
 
                     <!-- Menampilkan pengajuan yang disetujui -->
-                    @foreach (session('approved_pengajuans', []) as $approved)
+                    @foreach (session('approved_pengajuansruang', []) as $approvedPengajuansruang)
                         <tr>
-                            <td>{{ $approved['kode_ruang'] }}</td>
-                            <td>{{ $approved['id_programstudi'] }}</td>
+                            <td>{{ $approvedPengajuansruang['kode_ruang'] }}</td>
+                            <td>{{ $approvedPengajuansruang['id_programstudi'] }}</td>
                             <td><span class="text-success">Disetujui</span></td>
                         </tr>
                     @endforeach
                     <!-- Menampilkan pengajuan yang ditolak -->
-                    @foreach (session('rejected_pengajuans', []) as $rejected)
+                    @foreach (session('rejected_pengajuansruang', []) as $rejectedPengajuanruang)
                         <tr>
-                            <td>{{ $rejected['kode_ruang'] }}</td>
-                            <td>{{ $rejected['id_programstudi'] }}</td>
+                            <td>{{ $rejectedPengajuanruang['kode_ruang'] }}</td>
+                            <td>{{ $rejectedPengajuanruang['id_programstudi'] }}</td>
                             <td><span class="text-danger">Ditolak</span></td>
                         </tr>
                     @endforeach
