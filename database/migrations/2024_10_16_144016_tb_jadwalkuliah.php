@@ -13,9 +13,11 @@ return new class extends Migration
             $table->string('kode_mk', 8); // Foreign key untuk kode mata kuliah
             $table->string('kode_ruang', 25); // Foreign key untuk kode ruang
             $table->string('hari', 10); // Hari perkuliahan
-            $table->time('jam'); // Jam perkuliahan
+            $table->time('jam_mulai'); // Jam perkuliahan
+            $table->time('jam_selesai')->nullable();
             $table->string('nama_kelas', 10); // Foreign key untuk nama kelas
             $table->string('nidn_dosenpengampu', 18);
+            $table->string('status')->default('menunggu konfirmasi');
             $table->timestamps(); // Untuk mencatat waktu pembuatan dan update
 
             $table->foreign('nidn_dosenpengampu')->references('nidn_dosenpengampu')->on('matakuliah')->onDelete('cascade');

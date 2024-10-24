@@ -68,15 +68,24 @@ Route::get('/dekan/approve-jadwal', [DekanController::class, 'createPengajuanJad
 Route::patch('/dekan/update-pengajuan/{id}', [DekanController::class, 'updatePengajuanJadwal'])->name('pengajuan.updatejadwal');
 
 //kaprodi menyusun matakuliah
+Route::get('memilihmatakuliah/create', [KetuaProgramStudiController::class, 'createMemilihMataKuliah'])->name('memilihmatakuliah.create');
+Route::post('memilihmatakuliah', [KetuaProgramStudiController::class, 'storeMemilihMataKuliah'])->name('memilihmatakuliah.store');
 // Route::get('memilihmatakuliah', function () {
 //     return view('ketuaprogramstudi.memilihmatakuliah', ['title' => 'memilihmatakuliah']);
 // })->name('memilihmatakuliah');
-Route::get('memilihmatakuliah', [KetuaProgramStudiController::class, 'createMemilihMataKuliah'])->name('memilihmatakuliah.create');
-Route::post('memilihmatakuliah', [KetuaProgramStudiController::class, 'storeMemilihMataKuliah'])->name('memilihmatakuliah.store');
+Route::get('/memilihmatakuliah', [KetuaProgramStudiController::class, 'indexMemilihMataKuliah'])->name('memilihmatakuliah.index');
+Route::get('memilihmatakuliah/{kode_mk}/edit', [KetuaProgramStudiController::class, 'editMemilihMataKuliah'])->name('memilihmatakuliah.edit');
+Route::put('memilihmatakuliah/{kode_mk}', [KetuaProgramStudiController::class, 'updateMemilihMataKuliah'])->name('memilihmatakuliah.update');
+Route::delete('memilihmatakuliah/{kode_mk}', [KetuaProgramStudiController::class, 'destroyMemilihMataKuliah'])->name('memilihmatakuliah.destroy');
+
 
 //kaprodi jadwal kuliah
+Route::post('/hitung-jam-selesai', [KetuaProgramStudiController::class, 'hitungJamSelesai'])->name('jadwalkuliah.hitungJamSelesai');
+Route::get('/getRuangan/{id_programstudi}', [KetuaProgramStudiController::class, 'getRuangan']);
 Route::get('JadwalKuliah', [KetuaProgramStudiController::class, 'createJadwalKuliah'])->name('jadwalkuliah.create');
 Route::post('JadwalKuliah', [KetuaProgramStudiController::class, 'storeJadwalKuliah'])->name('jadwalkuliah.store');
+Route::get('Ketuaprogramstudi/jadwalkuliah/lihatjadwalkuliah', [KetuaProgramStudiController::class, 'indexjadwalKuliah'])->name('lihatjadwalkuliah.lihat');
+
 
 // login
 Route::get('register', [UserController::class, 'register'])->name('register');
@@ -91,3 +100,5 @@ Route::get('logout', [UserController::class, 'logout'])->name('logout');
 // Route::get('memilihmatakuliah/{id}/edit', [KetuaProgramStudiController::class, 'edit'])->name('memilihmatakuliah.edit');
 // Route::put('memilihmatakuliah/{id}', [KetuaProgramStudiController::class, 'update'])->name('memilihmatakuliah.update');
 // Route::delete('memilihmatakuliah/{id}', [KetuaProgramStudiController::class, 'destroy'])->name('memilihmatakuliah.destroy');
+
+// Route::post('/jadwal/hitungJam', [KetuaProgramStudi::class, 'hitungJam'])->name('hitungJam');

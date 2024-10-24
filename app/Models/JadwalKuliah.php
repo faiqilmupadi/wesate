@@ -18,9 +18,11 @@ class JadwalKuliah extends Model
         'kode_mk',
         'kode_ruang',
         'hari',
-        'jam',
+        'jam_mulai',
+        'jam_selesai',
         'nama_kelas',
         'nidn_dosenpengampu',
+        'status',
     ];
 
     // Relasi dengan Kelas
